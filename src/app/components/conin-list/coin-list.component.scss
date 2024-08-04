@@ -1,0 +1,104 @@
+.banner {
+    background-image: url('../../../assets/banner2.jpg');
+    width: 100%;
+    height: 400px;
+    .header {
+        height: 40%;
+        display: flex;
+        // justify-content: center;
+        // align-items: center;
+        text-align: center;
+        flex-direction: column;
+        color: #fff;
+        h2 {
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            line-height: 1.2;
+            letter-spacing: -0.008rem;
+            margin: 0;
+            padding: 0;
+        }
+        h6 {
+            color: darkgray;
+            text-transform: capitalize;
+            font-size: 0.8rem;
+            font-weight: 500;
+            line-height: 1.57;
+            letter-spacing: -0.00714rem;
+        }
+    }
+
+    .sub-header {
+        height: 50%;
+        display: flex;
+        align-items: center;
+    }
+
+    .card {
+        border: 0;
+        background-color: transparent;
+        padding: 10px;
+        margin: 40px;
+        width: 100px;
+        height: 200px;
+        .card-image {
+            img {
+                width: 100%;
+                margin: 0 auto;
+            }
+        }
+        .card-body {
+            color: #fff;
+            h5 {
+                font: {
+                    font-weight: 500;
+                }
+            }
+            p {
+                font-weight: 700;
+            }
+        }
+    }
+}
+
+table {
+    width: 100%;
+}
+
+h1 {
+    font : {
+        style: italic;
+        weight: 500;
+    }
+}
+
+.container {
+    padding: 10px;
+}
+
+.mat-form-field {
+    width: 100%;
+    font-size: 14px;
+}
+
+td,
+th {
+    width: 25%;
+}
+
+:host ::ng-deep .mat-sort-header-content {
+    color: #fff;
+}
+
+:host ::ng-deep .mat-paginator-outer-container {
+    background-color: rgb(36, 37, 37);
+}
+
+:host ::ng-deep thead.ng-star-inserted {
+    background-color: #009688 !important;
+}
+
+:host ::ng-deep tr.mat-row {
+    height: 70px;
+}
