@@ -21,7 +21,7 @@ import { MatSelectModule } from '@angular/material/select';
 export class HeaderComponent {
     selectedCurrency: string = 'INR';
 
-    sendCurrency(event: Event) {
-        console.log(event);
-    }
+    // sendCurrency(event: Event) {
+    //     console.log(event);
+    // }
 }
