@@ -15,6 +15,13 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ActivatedRoute, Router } from '@angular/router';
+
+import { TableModule } from 'primeng/table';
+import { HttpClientModule } from '@angular/common/http';
+import { InputTextModule } from 'primeng/inputtext';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
+import { TagModule } from 'primeng/tag';
 @Component({
     selector: 'app-coin-list',
     standalone: true,
@@ -26,7 +33,14 @@ import { ActivatedRoute, Router } from '@angular/router';
         MatTableModule,
         MatSortModule,
         MatPaginatorModule,
+        TableModule,
+        HttpClientModule,
+        InputTextModule,
+        TagModule,
+        IconFieldModule,
+        InputIconModule,
     ],
+
     templateUrl: './coin-list.component.html',
     styleUrl: './coin-list.component.scss',
 })
@@ -46,7 +60,8 @@ export class CoinListComponent implements OnInit {
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
-
+    customers!: any[];
+    selectedCustomers: any;
     constructor() {}
 
     ngOnInit(): void {

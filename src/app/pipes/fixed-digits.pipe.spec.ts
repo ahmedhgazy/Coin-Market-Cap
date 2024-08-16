@@ -1,8 +1,8 @@
-import { FixedDigitsPipe } from './fixed-digits.pipe';
+import { TruncateDecimalPipe } from './fixed-digits.pipe';
 
-describe('FixedDigitsPipe', () => {
-  it('create an instance', () => {
-    const pipe = new FixedDigitsPipe();
-    expect(pipe).toBeTruthy();
-  });
+describe('truncateDecimal', () => {
+    it('create an instance', () => {
+        const pipe = new TruncateDecimalPipe();
+        expect(pipe).toBeTruthy();
+    });
 });

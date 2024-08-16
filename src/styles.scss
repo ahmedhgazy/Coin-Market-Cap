@@ -2,25 +2,21 @@
 
 @include mat.core();
 
-$crypto-checker-yt-primary: mat.define-palette(mat.$indigo-palette);
-$crypto-checker-yt-accent: mat.define-palette(
-    mat.$pink-palette,
-    A200,
-    A100,
-    A400
-);
-$crypto-checker-yt-warn: mat.define-palette(mat.$red-palette);
-$crypto-checker-yt-theme: mat.define-dark-theme(
-    (
-        color: (
-            primary: $crypto-checker-yt-primary,
-            accent: $crypto-checker-yt-accent,
-            warn: $crypto-checker-yt-warn,
-        ),
-    )
-);
+$dark: #333;
 
-@include mat.all-component-themes($crypto-checker-yt-theme);
+// Spacing
+$spacer: 1rem !default;
+$spacers: (
+    0: 0,
+    1: $spacer * 0.25,
+    2: $spacer * 0.5,
+    3: $spacer,
+    4: $spacer * 1.5,
+    5: $spacer * 3,
+    6: $spacer * 6,
+    7: $spacer * 8,
+    8: $spacer * 12,
+) !default;
 
 html,
 body {
@@ -30,6 +26,6 @@ body {
 body {
     margin: 0;
     font-family: Roboto, 'Helvetica Neue', sans-serif;
-    background: #212121;
-    color: #fff;
 }
+
+@import '../node_modules/bootstrap/scss/bootstrap';
