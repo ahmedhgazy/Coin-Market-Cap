@@ -9,6 +9,8 @@ export class CurrencyService {
   baseUrl = environment.apiUrl;
 
   http: HttpClient = inject(HttpClient);
+
+  // get currencies
   getCurrency(currency: string): Observable<any> {
     return this.http
       .get(
@@ -16,7 +18,7 @@ export class CurrencyService {
       )
       .pipe(shareReplay());
   }
-
+// get trending currencies
   getTrendingCurrency(currency: string) {
     return this.http
       .get<any>(
@@ -25,6 +27,8 @@ export class CurrencyService {
       .pipe(shareReplay());
   }
 
+
+// get currencies graph details (chart)
   getGraphicalCurrencyData(coinId: string, currency: string, days: number) {
     return this.http
       .get<any>(
@@ -33,6 +37,7 @@ export class CurrencyService {
       .pipe(shareReplay());
   }
 
+// get currency details
   getCurrencyById(coinId: string) {
     return this.http.get<any>(`${this.baseUrl}${coinId}`).pipe(shareReplay());
   }
