@@ -16,12 +16,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { TableModule } from 'primeng/table';
+import { Table, TableModule } from 'primeng/table';
 import { HttpClientModule } from '@angular/common/http';
 import { InputTextModule } from 'primeng/inputtext';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { TagModule } from 'primeng/tag';
+import { PRIME_UTILITIES } from '../../../prime';
+import { BackToTopDirective } from '../../shared/directives/top.directive';
 @Component({
     selector: 'app-coin-list',
     standalone: true,
@@ -39,6 +41,8 @@ import { TagModule } from 'primeng/tag';
         TagModule,
         IconFieldModule,
         InputIconModule,
+        PRIME_UTILITIES,
+        BackToTopDirective,
     ],
 
     templateUrl: './coin-list.component.html',
@@ -57,11 +61,13 @@ export class CoinListComponent implements OnInit {
     trendingCurrency$: Observable<any[]>;
     allData$: Observable<any[]>;
     dataSource!: MatTableDataSource<any>;
+    router: Router = inject(Router);
+    route: ActivatedRoute = inject(ActivatedRoute);
+    @ViewChild('dt1') dt1: Table | undefined;
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
-    customers!: any[];
-    selectedCustomers: any;
+    selectedCoins: any;
     constructor() {}
 
     ngOnInit(): void {
@@ -75,22 +81,36 @@ export class CoinListComponent implements OnInit {
         );
     }
 
-    ngAfterViewInit() {
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-    }
-
-    applyFilter(event: Event) {
-        const filterValue = (event.target as HTMLInputElement).value;
-        this.dataSource.filter = filterValue.trim().toLowerCase();
-
-        this.dataSource.paginator.firstPage();
-    }
-
-    router: Router = inject(Router);
-    route: ActivatedRoute = inject(ActivatedRoute);
-
     navToDetails(row) {
         this.router.navigate(['coin-detail', row.id]);
+    }
+
+    /*   PRIME NG TABLE  */
+
+    getSeverity(status: string) {
+        switch (status) {
+            case 'unqualified':
+                return 'danger';
+
+            case 'qualified':
+                return 'success';
+
+            case 'new':
+                return 'info';
+
+            case 'negotiation':
+                return 'warning';
+
+            case 'renewal':
+                return null;
+        }
+        return null;
+    }
+
+    onGlobalFilter(event: Event) {
+        this.dt1.filterGlobal(
+            (event.target as HTMLInputElement).value,
+            'contains'
+        );
     }
 }

@@ -1,0 +1,91 @@
+<ng-container *ngIf="coin$ | async as coin">
+    <section class="details my-3">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-4 border-right-1">
+                    <div
+                        style="width: 100%"
+                        class="img-wrapper d-flex align-items-center justify-content-center flex-column"
+                    >
+                        <img
+                            [src]="coin?.image?.large"
+                            alt=""
+                            class="img-fluid rounded-circle mb-2"
+                            style="width: 150px; height: 150px"
+                        />
+                        <h2>
+                            {{ coin.name }}
+                        </h2>
+                    </div>
+                    <div class="text ms-3">
+                        <p class="desc">
+                            {{ coin?.description?.en.split('. ')[0] }}
+                        </p>
+                    </div>
+                    <div class="meta-data ps-3 mt-5">
+                        <p>
+                            <strong>Rank:</strong>
+
+                            <span class="ms-3"
+                                >{{ coin?.market_cap_rank }}
+                            </span>
+                        </p>
+                        <p>
+                            <strong>Current Price: </strong>
+                            <span class="ms-3">
+                                {{
+                                    coin?.market_data.current_price.inr
+                                        | currency : currency
+                                }}
+                            </span>
+                        </p>
+                        <p>
+                            <strong>Market Cap: </strong>
+                            <span class="ms-3">
+                                {{
+                                    coin?.market_data.market_cap.inr
+                                        | currency : currency
+                                }}
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-8">
+                    <canvas
+                        style="width: 300px"
+                        baseChart
+                        [data]="lineChartData"
+                        [options]="lineChartOptions"
+                        [type]="lineChartType"
+                    ></canvas>
+                    <div class="d-flex justify-content-around">
+                        <button
+                            (click)="getGraphData(1)"
+                            class="btn btn-custom"
+                        >
+                            24 hours
+                        </button>
+                        <button
+                            (click)="getGraphData(30)"
+                            class="btn btn-custom"
+                        >
+                            30 days
+                        </button>
+                        <button
+                            (click)="getGraphData(90)"
+                            class="btn btn-custom"
+                        >
+                            90 days
+                        </button>
+                        <button
+                            (click)="getGraphData(365)"
+                            class="btn btn-custom"
+                        >
+                            1 year
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</ng-container>

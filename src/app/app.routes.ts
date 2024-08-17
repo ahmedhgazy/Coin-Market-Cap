@@ -13,7 +13,7 @@ export const routes: Routes = [
         component: CoinListComponent,
     },
     {
-        path: 'coin-detail/:id',
+        path: 'coin/:id',
         component: CoinDetailsComponent,
     },
 ];

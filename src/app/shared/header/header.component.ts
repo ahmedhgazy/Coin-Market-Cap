@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
+import { CurrencyService } from '../../services/currency.service';
 
 @Component({
     selector: 'app-header',
@@ -20,8 +21,8 @@ import { MatSelectModule } from '@angular/material/select';
 })
 export class HeaderComponent {
     selectedCurrency: string = 'INR';
-
-    // sendCurrency(event: Event) {
-    //     console.log(event);
-    // }
+    currencyS = inject(CurrencyService);
+    sendCurrency(currency: string) {
+        this.currencyS.setCurrency(currency);
+    }
 }

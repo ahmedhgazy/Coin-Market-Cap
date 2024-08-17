@@ -4,24 +4,26 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import {
-  HTTP_INTERCEPTORS,
-  HttpClientModule,
-  provideHttpClient,
-  withInterceptors,
+    HTTP_INTERCEPTORS,
+    HttpClientModule,
+    provideHttpClient,
+    withInterceptors,
 } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-export const appConfig: ApplicationConfig = {
-  providers: [
-    provideRouter(routes),
-    provideClientHydration(),
-    provideAnimationsAsync(),
-    importProvidersFrom(HttpClientModule),
-    BrowserAnimationsModule,
-    provideAnimationsAsync(),
-    provideAnimationsAsync(),
-    provideAnimationsAsync(),
-    provideAnimationsAsync(),
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 
-  ],
+export const appConfig: ApplicationConfig = {
+    providers: [
+        provideRouter(routes),
+        provideClientHydration(),
+        provideAnimationsAsync(),
+        importProvidersFrom(HttpClientModule),
+        BrowserAnimationsModule,
+        provideAnimationsAsync(),
+        provideAnimationsAsync(),
+        provideAnimationsAsync(),
+        provideAnimationsAsync(),
+        provideCharts(withDefaultRegisterables()),
+    ],
 };
