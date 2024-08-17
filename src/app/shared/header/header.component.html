@@ -1,11 +1,12 @@
 <mat-toolbar
-    style="height: 80px"
+    style="height: 80px; width: 100%"
     class="shadow position-relative d-flex align-items-center"
 >
-    <span>Crypto Checker </span>
+    <span style="cursor: pointer" routerLink="/">Crypto Checker </span>
     <span class="example-spacer"></span>
     <mat-form-field
         appearance="outline"
+        class="mx-4"
         style="transform: translateY(10%); width: 100px"
     >
         <mat-select
@@ -17,4 +18,10 @@
             <mat-option value="USD">USD</mat-option>
         </mat-select>
     </mat-form-field>
+
+    <app-menu
+        [options]="options$ | async"
+        (themeChange)="themeChangeHandler($event)"
+    >
+    </app-menu>
 </mat-toolbar>

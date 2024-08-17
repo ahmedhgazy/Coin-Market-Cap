@@ -7,6 +7,7 @@ import {
     HTTP_INTERCEPTORS,
     HttpClientModule,
     provideHttpClient,
+    withFetch,
     withInterceptors,
 } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,5 +26,6 @@ export const appConfig: ApplicationConfig = {
         provideAnimationsAsync(),
         provideAnimationsAsync(),
         provideCharts(withDefaultRegisterables()),
+        provideHttpClient(withFetch()),
     ],
 };

@@ -14,7 +14,7 @@ import { ChartConfiguration, ChartType } from 'chart.js';
 })
 export class CoinDetailsComponent implements OnInit, OnDestroy {
     coinId: string;
-    coin$: Observable<any>;
+    coin: any;
     route = inject(ActivatedRoute);
     days: number = 30;
     currencyService = inject(CurrencyService);
@@ -68,9 +68,49 @@ export class CoinDetailsComponent implements OnInit, OnDestroy {
     }
 
     getCoinById(id: string) {
-        this.coin$ = this.currencyService.getCurrencyById(id);
+        this.currencyService.getCurrencyById(id).subscribe((data) => {
+            this.coin = data;
+        });
     }
 
+    getCoinData() {
+        this.currencyService.getCurrencyById(this.coinId).subscribe((res) => {
+            if (this.currency === 'USD') {
+                res.market_data.current_price.inr =
+                    res.market_data.current_price.usd;
+                res.market_data.market_cap.inr = res.market_data.market_cap.usd;
+            }
+            res.market_data.current_price.inr =
+                res.market_data.current_price.inr;
+            res.market_data.market_cap.inr = res.market_data.market_cap.inr;
+            this.coin = res;
+        });
+    }
+    getGraphData(days: number) {
+        this.days = days;
+        this.currencyService
+            .getGraphicalCurrencyData(this.coinId, this.currency, this.days)
+            .subscribe((res) => {
+                setTimeout(() => {
+                    this.myLineChart.chart?.update();
+                }, 200);
+                this.lineChartData.datasets[0].data = res.prices.map(
+                    (a: any) => {
+                        return a[1];
+                    }
+                );
+                this.lineChartData.labels = res.prices.map((a: any) => {
+                    let date = new Date(a[0]);
+                    let time =
+                        date.getHours() > 12
+                            ? `${date.getHours() - 12}: ${date.getMinutes()} PM`
+                            : `${date.getHours()}: ${date.getMinutes()} AM`;
+                    return this.days === 1 ? time : date.toLocaleDateString();
+                });
+            });
+    }
+
+    /*
     getCoinData() {
         this.currencyService
             .getCurrencyById(this.coinId)
@@ -125,6 +165,7 @@ export class CoinDetailsComponent implements OnInit, OnDestroy {
             )
             .subscribe();
     }
+    */
 
     ngOnDestroy() {
         this.endSub$.next(() => {});
