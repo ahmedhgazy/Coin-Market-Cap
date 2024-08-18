@@ -28,6 +28,5 @@ export class HeaderComponent {
     sendCurrency(currency: string) {
         this.currencyS.setCurrency(currency);
     }
-    @Output()
-    toggleSideNav = new EventEmitter<void>();
+
 }

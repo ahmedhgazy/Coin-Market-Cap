@@ -1,7 +1,9 @@
 .banner {
-    background-image: url('../../../assets/banner2.jpg');
+    background-color: #eee;
     width: 100%;
     height: 400px;
+    color: #333 !important;
+
     .header {
         height: 40%;
         display: flex;
@@ -9,7 +11,15 @@
         // align-items: center;
         text-align: center;
         flex-direction: column;
-        color: #fff;
+        h1 {
+            background: linear-gradient(rgb(24, 95, 246), rgba(27, 69, 166, 1));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-style: italic;
+            font-weight: 500;
+        }
+
         h2 {
             font-weight: bold;
             margin-bottom: 15px;
@@ -18,6 +28,7 @@
             letter-spacing: -0.008rem;
             margin: 0;
             padding: 0;
+            color: #333 !important;
         }
         h6 {
             color: darkgray;
@@ -26,22 +37,27 @@
             font-weight: 500;
             line-height: 1.57;
             letter-spacing: -0.00714rem;
+            color: #333 !important;
         }
     }
 
     .sub-header {
         height: 50%;
         display: flex;
+        color: #333 !important;
+
         align-items: center;
     }
 
     .card {
         border: 0;
         background-color: transparent;
-        padding: 10px;
-        margin: 40px;
+        padding: 20px;
+        margin: 50px;
         width: 100px;
         height: 200px;
+        color: inherit;
+
         .card-image {
             img {
                 width: 100%;
@@ -49,14 +65,17 @@
             }
         }
         .card-body {
-            color: #fff;
+            color: #333 !important;
+
             h5 {
                 font: {
                     font-weight: 500;
+                    color: #333 !important;
                 }
             }
             p {
                 font-weight: 700;
+                color: #333 !important;
             }
         }
     }

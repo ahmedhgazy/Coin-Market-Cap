@@ -6,9 +6,12 @@ import {
     Renderer2,
     OnInit,
     OnDestroy,
+    PLATFORM_ID,
+    Inject,
 } from '@angular/core';
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime, throttleTime } from 'rxjs/operators';
+import { isPlatformBrowser } from '@angular/common';
 
 @Directive({
     selector: '[appBackToTop]',
@@ -21,19 +24,26 @@ export class BackToTopDirective implements OnInit, OnDestroy {
     private element: HTMLElement;
     private scrollSubscription: Subscription;
 
-    constructor(private el: ElementRef, private renderer: Renderer2) {
+    constructor(
+        private el: ElementRef,
+        private renderer: Renderer2,
+
+        @Inject(PLATFORM_ID) private platformId: Object
+    ) {
         this.element = el.nativeElement;
     }
 
     ngOnInit() {
-        this.renderer.setStyle(this.element, 'display', 'none');
+        if (isPlatformBrowser(this.platformId)) {
+            this.renderer.setStyle(this.element, 'display', 'none');
 
-        this.scrollSubscription = fromEvent(window, 'scroll')
-            .pipe(
-                throttleTime(100), // Limit scroll event firing
-                debounceTime(100) // Wait for scroll to finish
-            )
-            .subscribe(() => this.toggleVisibility());
+            this.scrollSubscription = fromEvent(window, 'scroll')
+                .pipe(
+                    throttleTime(100), // Limit scroll event firing
+                    debounceTime(100) // Wait for scroll to finish
+                )
+                .subscribe(() => this.toggleVisibility());
+        }
     }
 
     ngOnDestroy() {
@@ -44,18 +54,22 @@ export class BackToTopDirective implements OnInit, OnDestroy {
 
     @HostListener('click')
     onClick() {
-        if (this.smoothScroll) {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        } else {
-            window.scrollTo(0, 0);
+        if (isPlatformBrowser(this.platformId)) {
+            if (this.smoothScroll) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                window.scrollTo(0, 0);
+            }
         }
     }
 
     private toggleVisibility() {
-        if (window.pageYOffset > this.scrollThreshold) {
-            this.renderer.setStyle(this.element, 'display', 'flex');
-        } else {
-            this.renderer.setStyle(this.element, 'display', 'none');
+        if (isPlatformBrowser(this.platformId)) {
+            if (window.pageYOffset > this.scrollThreshold) {
+                this.renderer.setStyle(this.element, 'display', 'flex');
+            } else {
+                this.renderer.setStyle(this.element, 'display', 'none');
+            }
         }
     }
 }
