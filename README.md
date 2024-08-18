@@ -1,5 +1,13 @@
 # Coin-Market-Cap
 
+# Demo:(https://coinmarket-6o4wfd4t1-ahmedhgazys-projects.vercel.app/coin-list)
+
+# Samples
+
+![Alt text](/src/assets/Capture1.PNG)
+![Alt text](/src/assets/Capture2.PNG)
+![Alt text](/src/assets/Capture3.PNG)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.6.
 
 ## Development server
