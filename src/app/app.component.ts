@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, inject, Inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './shared/header/header.component';
 
@@ -8,12 +8,7 @@ import { LoadingComponent } from './shared/loading/loading.component';
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [
-        RouterOutlet,
-        CommonModule,
-        HeaderComponent,
-        LoadingComponent,
-    ],
+    imports: [RouterOutlet, CommonModule, HeaderComponent, LoadingComponent],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
 })

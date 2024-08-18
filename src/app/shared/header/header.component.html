@@ -18,10 +18,4 @@
             <mat-option value="USD">USD</mat-option>
         </mat-select>
     </mat-form-field>
-
-    <app-menu
-        [options]="options$ | async"
-        (themeChange)="themeChangeHandler($event)"
-    >
-    </app-menu>
 </mat-toolbar>
