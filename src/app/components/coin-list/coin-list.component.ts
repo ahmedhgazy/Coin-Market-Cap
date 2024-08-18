@@ -1,10 +1,4 @@
-import {
-    Component,
-    inject,
-    OnInit,
-    ViewChild,
-    AfterViewInit,
-} from '@angular/core';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { CurrencyService } from '../../services/currency.service';
 import { catchError, map, Observable, tap, throwError } from 'rxjs';
 import { CommonModule } from '@angular/common';
