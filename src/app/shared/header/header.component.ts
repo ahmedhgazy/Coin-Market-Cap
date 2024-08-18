@@ -28,5 +28,4 @@ export class HeaderComponent {
     sendCurrency(currency: string) {
         this.currencyS.setCurrency(currency);
     }
-
 }

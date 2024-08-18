@@ -10,13 +10,13 @@
 
         text-align: center;
         flex-direction: column;
-        h1 {
+        h1,
+        p {
             background: linear-gradient(rgb(24, 95, 246), rgba(27, 69, 166, 1));
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
             font-style: italic;
-            font-weight: 500;
         }
 
         h2 {

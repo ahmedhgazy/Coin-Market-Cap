@@ -17,7 +17,6 @@ export class MessagesComponent implements OnInit {
     errors$: Observable<string[]>;
 
     constructor(public messagesService: MessagesService) {
-        console.log('Created messages component');
     }
 
     ngOnInit() {

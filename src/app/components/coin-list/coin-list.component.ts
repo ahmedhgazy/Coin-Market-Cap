@@ -80,7 +80,7 @@ export class CoinListComponent implements OnInit {
                     const message =
                         'Something went wrong, please try again later';
                     this.messages.showErrors(message);
-                    console.log(message, err);
+
                     return throwError(() => err);
                 })
             )

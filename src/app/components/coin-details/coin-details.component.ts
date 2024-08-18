@@ -92,7 +92,6 @@ export class CoinDetailsComponent implements OnInit, OnDestroy {
                     this.coin = coinData;
                     this.updateChartData(graphData);
                 },
-                complete: () => console.log('Data loading completed'),
             });
     }
 
