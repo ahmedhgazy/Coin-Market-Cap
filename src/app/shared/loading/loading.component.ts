@@ -1,13 +1,15 @@
-import { Component } from '@angular/core';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { CommonModule } from '@angular/common';
+import { Component, inject } from '@angular/core';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { LoadingService } from './loading.service';
 
 @Component({
     selector: 'app-loading',
     standalone: true,
-    imports: [MatProgressSpinnerModule],
+    imports: [ProgressSpinnerModule, CommonModule],
     templateUrl: './loading.component.html',
     styleUrl: './loading.component.scss',
 })
 export class LoadingComponent {
-    isLoading = false;
+    loadingService: LoadingService = inject(LoadingService);
 }

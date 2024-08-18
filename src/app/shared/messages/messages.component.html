@@ -1,0 +1,12 @@
+<ng-container *ngIf="errors$ | async as errors">
+    <div
+        class="messages-container d-flex justify-content-between align-items-center"
+        *ngIf="showMessages"
+    >
+        <div class="message mb-2" *ngFor="let error of errors">
+            {{ error }}
+        </div>
+
+        <button class="btn btn-close" (click)="onClose()"></button>
+    </div>
+</ng-container>

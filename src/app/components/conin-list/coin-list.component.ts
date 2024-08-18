@@ -6,7 +6,7 @@ import {
     AfterViewInit,
 } from '@angular/core';
 import { CurrencyService } from '../../services/currency.service';
-import { map, Observable, tap } from 'rxjs';
+import { catchError, map, Observable, tap, throwError } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { TruncateDecimalPipe } from '../../pipes/fixed-digits.pipe';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
@@ -24,6 +24,8 @@ import { InputIconModule } from 'primeng/inputicon';
 import { TagModule } from 'primeng/tag';
 import { PRIME_UTILITIES } from '../../../prime';
 import { BackToTopDirective } from '../../shared/directives/top.directive';
+import { LoadingService } from '../../shared/loading/loading.service';
+import { MessagesService } from '../../shared/messages/messages.service';
 @Component({
     selector: 'app-coin-list',
     standalone: true,
@@ -49,6 +51,7 @@ import { BackToTopDirective } from '../../shared/directives/top.directive';
     styleUrl: './coin-list.component.scss',
 })
 export class CoinListComponent implements OnInit {
+    loadingS = inject(LoadingService);
     displayedColumns: string[] = [
         'symbol',
         'current_price',
@@ -64,15 +67,24 @@ export class CoinListComponent implements OnInit {
     router: Router = inject(Router);
     route: ActivatedRoute = inject(ActivatedRoute);
     @ViewChild('dt1') dt1: Table | undefined;
-
+    messages = inject(MessagesService);
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
     selectedCoins: any;
     constructor() {}
 
     ngOnInit(): void {
-        this.trendingCurrency$ =
-            this.currencyService.getTrendingCurrency('INR');
+        this.trendingCurrency$ = this.loadingS.showLoadingUntilCompleted(
+            this.currencyService.getTrendingCurrency('INR').pipe(
+                catchError((err) => {
+                    const message =
+                        'Something went wrong, please try again later';
+                    this.messages.showErrors(message);
+                    console.log(message, err);
+                    return throwError(() => err);
+                })
+            )
+        );
         // Get allData
         this.allData$ = this.currencyService.getCurrency('INR').pipe(
             tap((res) => {

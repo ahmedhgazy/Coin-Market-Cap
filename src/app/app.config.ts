@@ -13,6 +13,8 @@ import {
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
+import { LoadingService } from './shared/loading/loading.service';
+import { MessagesService } from './shared/messages/messages.service';
 
 export const appConfig: ApplicationConfig = {
     providers: [
@@ -27,5 +29,7 @@ export const appConfig: ApplicationConfig = {
         provideAnimationsAsync(),
         provideCharts(withDefaultRegisterables()),
         provideHttpClient(withFetch()),
+        LoadingService,
+        MessagesService,
     ],
 };

@@ -3,8 +3,7 @@
         <div class="container">
             <section class="header">
                 <h1>Crypto checker</h1>
-                <p>Today's Cryptocurrency Prices by Market Cap
-                </p>
+                <p>Today's Cryptocurrency Prices by Market Cap</p>
             </section>
             <section class="sub-header">
                 <marquee
@@ -18,7 +17,9 @@
                         <ng-container
                             *ngFor="let row of trendingCurrency; let i = index"
                         >
-                            <div class="col-1 p-3 m-3">
+                            <div
+                                class="col-12 col-sm-6 col-md-3 col-lg-2 col-xl-1 p-3 m-3"
+                            >
                                 <div class="card">
                                     <div class="card-image">
                                         <img
@@ -170,8 +171,8 @@
         width: 1rem;
         height: 1rem;
         border-radius: 50%;
-        background-color: #333;
         cursor: pointer;
+        background: linear-gradient(rgb(24, 95, 246), rgba(27, 69, 166, 1));
     "
 >
     <i class="pi pi-arrow-up text-light fs-5"></i>

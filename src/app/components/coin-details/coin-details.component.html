@@ -1,8 +1,19 @@
+
+<ng-container *ngIf="loadingS.loading$ | async">
+    <div class="loading-spinner">Loading...</div>
+</ng-container>
+
+<ng-container *ngIf="messages.errors$ | async as errors">
+    <div class="alert alert-danger" *ngFor="let error of errors">
+        {{ error }}
+    </div>
+</ng-container>
+
 <ng-container *ngIf="coin">
     <section class="details my-3">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-4 border-right-1">
+                <div class="col-12 col-lg-4 border-right-1">
                     <div
                         style="width: 100%"
                         class="img-wrapper d-flex align-items-center justify-content-center flex-column"
@@ -25,10 +36,9 @@
                     <div class="meta-data ps-3 mt-5">
                         <p>
                             <strong>Rank:</strong>
-
-                            <span class="ms-3"
-                                >{{ coin?.market_cap_rank }}
-                            </span>
+                            <span class="ms-3">{{
+                                coin?.market_cap_rank
+                            }}</span>
                         </p>
                         <p>
                             <strong>Current Price: </strong>
@@ -50,7 +60,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="col-8">
+                <div class="col-12 col-lg-8">
                     <canvas
                         style="width: 300px"
                         baseChart
@@ -60,25 +70,25 @@
                     ></canvas>
                     <div class="d-flex justify-content-around">
                         <button
-                            (click)="getGraphData(1)"
+                            (click)="initializeData(1)"
                             class="btn btn-custom"
                         >
                             24 hours
                         </button>
                         <button
-                            (click)="getGraphData(30)"
+                            (click)="initializeData(30)"
                             class="btn btn-custom"
                         >
                             30 days
                         </button>
                         <button
-                            (click)="getGraphData(90)"
+                            (click)="initializeData(90)"
                             class="btn btn-custom"
                         >
                             90 days
                         </button>
                         <button
-                            (click)="getGraphData(365)"
+                            (click)="initializeData(365)"
                             class="btn btn-custom"
                         >
                             1 year
